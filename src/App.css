@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap");
+
+:root {
+  --ink: #16213e;
+  --paper: #f3f5f9;
+  --white: #ffffff;
+  --admin: #e8590c;
+  --viewer: #0b7285;
+  --danger: #c92a2a;
+  --line: #dde2ec;
+  --muted: #5f6b85;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1, h2, h3, .brand { font-family: "Space Grotesk", "Inter", sans-serif; margin: 0; }
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(280px, 42%) 1fr;
+}
+
+/* ---------- side panel ---------- */
+.side {
+  background: var(--ink);
+  color: #fff;
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+}
+.brand { font-size: 1.1rem; font-weight: 700; opacity: 0.85; }
+.side h1 { font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.1; max-width: 14ch; }
+.roles { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.roles__item {
+  display: grid; gap: 2px; padding: 14px 18px;
+  border-left: 5px solid; background: rgba(255,255,255,0.06); border-radius: 4px;
+}
+.roles__item span { opacity: 0.75; font-size: 0.95rem; }
+.roles__item--admin { border-color: var(--admin); }
+.roles__item--viewer { border-color: #3bc9db; }
+
+/* ---------- main panel ---------- */
+.panel { display: grid; place-items: center; padding: 32px 20px; }
+
+.card {
+  width: 100%; max-width: 420px;
+  background: var(--white); padding: 36px;
+  border-radius: 14px; border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(22, 33, 62, 0.08);
+}
+.card--wide { max-width: 640px; }
+.card h2 { font-size: 1.6rem; }
+.muted { color: var(--muted); margin: 6px 0 0; font-size: 0.92rem; }
+
+label { display: block; margin: 24px 0 6px; font-weight: 500; font-size: 0.9rem; }
+input {
+  width: 100%; padding: 12px 14px; font: inherit;
+  border: 1.5px solid var(--line); border-radius: 8px; background: var(--paper);
+}
+input:focus { outline: 3px solid rgba(11, 114, 133, 0.3); border-color: var(--viewer); background: #fff; }
+.error { color: var(--danger); font-size: 0.88rem; margin: 8px 0 0; }
+
+.actions { display: grid; gap: 10px; margin-top: 22px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  font: 500 0.98rem "Inter", sans-serif;
+  padding: 12px 18px; border: 0; border-radius: 8px; cursor: pointer; color: #fff;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible, .link:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.btn--admin { background: var(--admin); }
+.btn--viewer { background: var(--viewer); }
+.btn--danger { background: var(--danger); padding: 9px 14px; font-size: 0.88rem; white-space: nowrap; }
+.btn--ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; filter: none; }
+
+/* ---------- dashboard ---------- */
+.dash-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.badge {
+  display: inline-block; margin-top: 10px; padding: 4px 12px;
+  border-radius: 999px; font-size: 0.8rem; font-weight: 700; color: #fff;
+}
+.badge--admin { background: var(--admin); }
+.badge--viewer { background: var(--viewer); }
+
+.notice {
+  margin: 22px 0 0; padding: 12px 16px; border-radius: 8px;
+  background: #e3fafc; color: #0b5563; font-weight: 500;
+}
+
+.posts { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.post {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  padding: 16px 18px; border: 1px solid var(--line); border-radius: 10px;
+}
+.post h3 { font-size: 1.02rem; }
+.empty { text-align: center; color: var(--muted); padding: 20px; }
+.link { background: none; border: 0; color: var(--viewer); font: inherit; text-decoration: underline; cursor: pointer; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 800px) {
+  .shell { grid-template-columns: 1fr; }
+  .side { padding: 32px 24px; gap: 20px; }
+  .card { padding: 26px 20px; }
+  .post { flex-direction: column; align-items: flex-start; }
+  .dash-head { flex-direction: column; }
+}
